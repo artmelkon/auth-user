@@ -7,7 +7,7 @@ import classes from "./ProfileForm.module.css";
 const ProfileForm = () => {
   const newPassInputRef = useRef();
   const authCtx = useContext(AuthContext);
-  const history = useHistory()
+  const history = useHistory();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -15,7 +15,8 @@ const ProfileForm = () => {
     const enteredNewPassword = newPassInputRef.current.value;
 
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyA6Jn3bqxdkFYSiU_vffrEesskBRWkS-ro",
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" +
+        process.env.GGID,
       {
         method: "POST",
         headers: {
@@ -26,19 +27,25 @@ const ProfileForm = () => {
           password: enteredNewPassword,
           returnSecureToken: false,
         }),
-    })
-      .then(res => {
+      }
+    )
+      .then((res) => {
         // assumption: password change was successful
-        history.replace('/')
+        history.replace("/");
       })
-      .catch(err => console.error(err.message));
+      .catch((err) => console.error(err.message));
   };
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
       <div className={classes.control}>
         <label htmlFor="new-password">New Password</label>
-        <input ref={newPassInputRef} type="password" id="new-password" minLength="6" />
+        <input
+          ref={newPassInputRef}
+          type="password"
+          id="new-password"
+          minLength="6"
+        />
       </div>
       <div className={classes.action}>
         <button>Change Password</button>
