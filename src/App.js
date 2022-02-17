@@ -6,6 +6,7 @@ import UserProfile from "./components/Profile/UserProfile";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import AuthContext from "./store/auth-context";
+require("dotenv").config({ path: "env/.env" });
 
 function App() {
   const authCtx = useContext(AuthContext);
