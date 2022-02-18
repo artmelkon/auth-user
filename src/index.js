@@ -6,7 +6,6 @@ import App from "./App";
 import { AuthContextProvider } from "./store/auth-context";
 import env from "react-dotenv";
 
-console.log("process env ", env.GGID);
 ReactDOM.render(
   <AuthContextProvider>
     <BrowserRouter>
