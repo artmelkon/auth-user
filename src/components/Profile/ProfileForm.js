@@ -1,5 +1,6 @@
 import { useRef, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import env from 'react-dotenv';
 
 import AuthContext from "../../store/auth-context";
 import classes from "./ProfileForm.module.css";
@@ -16,7 +17,7 @@ const ProfileForm = () => {
 
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:update?key=" +
-        process.env.GGID,
+        env.GGID,
       {
         method: "POST",
         headers: {
